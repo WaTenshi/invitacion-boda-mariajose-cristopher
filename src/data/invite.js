@@ -63,7 +63,7 @@ export const invite = {
     "Si deseas disfrutar de la piscina, no olvides traer traje de baño.",
 
   closing:
-    "Gracias por acompañarnos y ser parte de este momento tan importante en nuestras vidas.\n\n¡Te esperamos con mucho cariño!",
+    "Gracias por acompañarnos y ser parte de este momento tan importante en nuestras vidas.\n\n¡Te esperamos con mucho cariño!\n\n\n\n Información importante: \n\nEsta invitación es una página web y podrá actualizarse con nueva información. Les recomendamos revisarla periódicamente para estar al tanto de cualquier novedad.",
 
   gallery: {
     title: "Retratos de nuestro amor",

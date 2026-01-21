@@ -599,22 +599,25 @@ Email: ${b.email}`;
           </button>
         </CardSection>
 
-        <CardSection id="fotografia" title="Fotografía">
-          {`Para que puedan disfrutar la ceremonia con tranquilidad, contaremos con un fotógrafo profesional.
-        Les pedimos amablemente no interrumpir su trabajo durante la ceremonia.
-        Luego, con mucho cariño, compartiremos las fotos para que también puedan tener este recuerdo.`}
-        </CardSection>
-
-        {/* REGALOS */}
         <CardSection id="regalos">
           <button onClick={() => setShowGift(true)} className="w-full linen-btn mt-0">
             Hacer un regalo
           </button>
         </CardSection>
 
-        {/* RSVP */}
         <CardSection id="rsvp" title="Confirmación de asistencia">
           {invite.rsvp.deadlineText}
+        </CardSection>
+
+        <CardSection id="fotografia" title="Fotografía">
+          {`Para que puedan disfrutar la ceremonia con tranquilidad, contaremos con un fotógrafo profesional.
+        Les pedimos amablemente no interrumpir su trabajo durante la ceremonia.
+        Luego, con mucho cariño, compartiremos las fotos para que también puedan tener este recuerdo.`}
+        </CardSection>
+
+        <CardSection id="info-importante" title="Información importante">
+          {`Esta invitación es una página web y podrá actualizarse con nueva información.
+        Les recomendamos revisarla periódicamente para estar al tanto de cualquier novedad.`}
         </CardSection>
 
         {/* CIERRE */}

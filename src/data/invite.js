@@ -2,7 +2,7 @@ const BASE = import.meta.env.BASE_URL;
 const img = (p) => `${BASE}${p.replace(/^\/+/, "")}`;
 
 export const invite = {
-  couple: "María José Abarzúa Riquelme & Christopher Nicolás Rubiera Larson",
+  couple: "María José Abarzúa Riquelme\n\n & \n\nCristopher Nicolás Rubiera Larson",
   verse: "“Dos son mejor que uno, porque obtienen más fruto de su esfuerzo.”",
   verseRef: "Eclisiastés 4:9",
   dateLong: "28 de febrero de 2026",
@@ -63,7 +63,7 @@ export const invite = {
     "Si deseas disfrutar de la piscina, no olvides traer traje de baño.",
 
   closing:
-    "Gracias por acompañarnos y ser parte de este momento tan importante en nuestras vidas.\n\n¡Te esperamos con mucho cariño!\n\n\n\n Información importante: \n\nEsta invitación es una página web y podrá actualizarse con nueva información. Les recomendamos revisarla periódicamente para estar al tanto de cualquier novedad.",
+    "Gracias por acompañarnos y ser parte de este momento tan importante en nuestras vidas.\n\n¡Te esperamos con mucho cariño!",
 
   gallery: {
     title: "Retratos de nuestro amor",

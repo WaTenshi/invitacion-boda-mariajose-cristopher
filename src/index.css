@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+/* App.css */
+
+/* Quita el CSS default de Vite que centra y mete padding al root */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
+
+/* ===== Tema "lino / papel" ===== */
+:root{
+  --paper: 250, 246, 238;      /* marfil */
+  --paper2: 244, 237, 226;     /* lino */
+  --ink: 58, 43, 32;           /* tinta café */
+  --gold: 166, 128, 87;        /* dorado suave */
+  --border: 220, 204, 182;     /* borde lino */
+}
+
+.linen-card{
+  position: relative;
+  border-radius: 1.35rem;
+  padding: 1.25rem;
+
+  /* ✅ más opaco para que se note sobre fotos */
+  background: rgba(var(--paper), 0.92);
+
+  /* ✅ borde elegante tipo invitación */
+  border: 1px solid rgba(var(--border), 0.85);
+
+  /* ✅ sombra más "premium" */
+  box-shadow:
+    0 10px 30px rgba(25, 15, 10, 0.18),
+    0 1px 0 rgba(255,255,255,0.35) inset;
+
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.linen-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  /* ✅ textura más visible */
+  opacity: .35;
+
+  background:
+    radial-gradient(900px 420px at 30% 0%, rgba(255,255,255,.60), transparent 55%),
+    radial-gradient(700px 360px at 70% 10%, rgba(255,255,255,.38), transparent 60%),
+
+    /* “fibra lino” */
+    repeating-linear-gradient(
+      90deg,
+      rgba(90,60,35,.08) 0px,
+      rgba(90,60,35,.08) 1px,
+      transparent 2px,
+      transparent 7px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(90,60,35,.03) 0px,
+      rgba(90,60,35,.03) 1px,
+      transparent 2px,
+      transparent 9px
+    );
+}
+
+/* ✅ Borde interior fino tipo marco */
+.linen-card::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius: 1.05rem;
+  border: 1px solid rgba(var(--gold), 0.22);
+  pointer-events:none;
+}
+
+
+.linen-title{
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  color: rgba(var(--ink), 0.92);
+  letter-spacing: .02em;
+}
+
+.linen-body{
+  color: rgba(var(--ink), 0.85);
+}
+
+.linen-divider{
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(var(--gold), .55),
+    transparent
+  );
+  opacity: .8;
+}
+
+.linen-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .8rem;
+  border-radius: .9rem;
+  background: rgba(255,255,255,.35);
+  border: 1px solid rgba(var(--border), .55);
+}
+
+.linen-btn{
+  border-radius: 0.9rem;
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  background: rgba(var(--gold), 0.18);
+  border: 1px solid rgba(var(--gold), 0.45);
+  color: rgba(var(--ink), 0.92);
+  transition: transform .08s ease, background .2s ease;
+}
+
+.linen-btn:hover{ background: rgba(var(--gold), 0.24); }
+.linen-btn:active{ transform: scale(0.985); }
+
+
+.font-script {
+  font-family: "Great Vibes", cursive;
+  
+}

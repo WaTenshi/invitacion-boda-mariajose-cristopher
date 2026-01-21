@@ -1,10 +1,20 @@
-import { useEffect, useMemo, useState, useRef, forwardRef, useImperativeHandle, } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { invite } from "./data/invite";
 import { IoPause, IoMusicalNotes, IoClose } from "react-icons/io5";
 import { MdDateRange, MdAccessTime, MdPlace } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import { FiCamera } from "react-icons/fi";
 
+// ✅ Helper para rutas correctas en GitHub Pages + Vite
+const BASE = import.meta.env.BASE_URL;
+const img = (p) => `${BASE}${p.replace(/^\/+/, "")}`;
 
 function CardSection({ id, title, children, contentClassName = "" }) {
   return (
@@ -12,18 +22,25 @@ function CardSection({ id, title, children, contentClassName = "" }) {
       <div className="linen-card">
         {title ? (
           <>
-            <h2 className="linen-title text-[22px] font-semibold text-center">{title}</h2>
+            <h2 className="linen-title text-[22px] font-semibold text-center">
+              {title}
+            </h2>
             <div className="mt-3 mx-auto linen-divider max-w-[220px]" />
           </>
         ) : null}
 
-        <div className={`linen-body whitespace-pre-line text-[15px] leading-7 text-center ${title ? "mt-4" : ""} ${contentClassName}`}>
+        <div
+          className={`linen-body whitespace-pre-line text-[15px] leading-7 text-center ${
+            title ? "mt-4" : ""
+          } ${contentClassName}`}
+        >
           {children}
         </div>
       </div>
     </section>
   );
 }
+
 function TikTokEmbed({ videoId, cite, maxWidth = 605, minWidth = 325 }) {
   return (
     <blockquote
@@ -100,7 +117,8 @@ function IntroScreen({ open, onEnter }) {
 
   if (!open) return null;
 
-  const imgSrc = isDesktop ? "/intropc.png" : "/intro.jpg";
+  // ✅ Antes: "/intropc.png" : "/intro.jpg"
+  const imgSrc = isDesktop ? img("intropc.png") : img("intro.jpg");
 
   return (
     <div className="fixed inset-0 z-[70]">
@@ -191,7 +209,10 @@ function GalleryCarousel({ id, title, subtitle, photos, onPhotoClick }) {
             <p className="mt-2 text-sm linen-body opacity-90">{subtitle}</p>
           ) : null}
 
-          <div className="mt-4 flex justify-center" style={{ color: "rgba(166,128,87,.9)" }}>
+          <div
+            className="mt-4 flex justify-center"
+            style={{ color: "rgba(166,128,87,.9)" }}
+          >
             <FiCamera size={28} />
           </div>
         </div>
@@ -243,7 +264,9 @@ const MusicButton = forwardRef(function MusicButton(
   ref
 ) {
   const playerRef = useRef(null);
-  const containerIdRef = useRef(`yt-player-${Math.random().toString(16).slice(2)}`);
+  const containerIdRef = useRef(
+    `yt-player-${Math.random().toString(16).slice(2)}`
+  );
   const pendingPlayRef = useRef(false);
 
   const [ready, setReady] = useState(false);
@@ -389,50 +412,50 @@ export default function App() {
   const [musicKick, setMusicKick] = useState(0);
   const musicRef = useRef(null);
 
-  const bgUrl = "/novios.jpg";
+  // ✅ Antes: "/novios.jpg"
+  const bgUrl = img("novios.jpg");
 
-const enterInvitation = () => {
-  musicRef.current?.playFromStart?.();
-
-  setEntered(true);
-};
-
-const [showDress, setShowDress] = useState(false);
-
-// lista simple (puedes meter más)
-const dressTiktoks = [
-  {
-    videoId: "7460441085836365074",
-    cite: "https://www.tiktok.com/@ortcclothingco/video/7460441085836365074",
-  },
-  {
-    videoId: "7366359414439300384",
-    cite: "https://www.tiktok.com/@_victoreis_/video/7366359414439300384",
-  },
-];
-useEffect(() => {
-  if (!showDress) return;
-
-  const src = "https://www.tiktok.com/embed.js";
-
-  const load = () => {
-    // Si ya existe el script, solo recarga embeds
-    if (document.querySelector(`script[src="${src}"]`)) {
-      window.tiktokEmbed?.load?.();
-      return;
-    }
-
-    const s = document.createElement("script");
-    s.src = src;
-    s.async = true;
-    s.onload = () => window.tiktokEmbed?.load?.();
-    document.body.appendChild(s);
+  const enterInvitation = () => {
+    musicRef.current?.playFromStart?.();
+    setEntered(true);
   };
 
-  // deja que el DOM pinte antes de cargar
-  const t = setTimeout(load, 50);
-  return () => clearTimeout(t);
-}, [showDress]);
+  const [showDress, setShowDress] = useState(false);
+
+  const dressTiktoks = [
+    {
+      videoId: "7460441085836365074",
+      cite: "https://www.tiktok.com/@ortcclothingco/video/7460441085836365074",
+    },
+    {
+      videoId: "7366359414439300384",
+      cite: "https://www.tiktok.com/@_victoreis_/video/7366359414439300384",
+    },
+  ];
+
+  useEffect(() => {
+    if (!showDress) return;
+
+    const src = "https://www.tiktok.com/embed.js";
+
+    const load = () => {
+      // Si ya existe el script, solo recarga embeds
+      if (document.querySelector(`script[src="${src}"]`)) {
+        window.tiktokEmbed?.load?.();
+        return;
+      }
+
+      const s = document.createElement("script");
+      s.src = src;
+      s.async = true;
+      s.onload = () => window.tiktokEmbed?.load?.();
+      document.body.appendChild(s);
+    };
+
+    // deja que el DOM pinte antes de cargar
+    const t = setTimeout(load, 50);
+    return () => clearTimeout(t);
+  }, [showDress]);
 
   const bankText = useMemo(() => {
     const b = invite.gifts.bank;
@@ -497,8 +520,9 @@ Email: ${b.email}`;
 
         {/* PRESENTACIÓN */}
         <CardSection id="presentacion" title="Presentación">
-          Con la bendición de Dios, queremos invitarte a celebrar nuestro matrimonio civil y compartir
-          un día especial de celebración al aire libre y en el campo.
+          Con la bendición de Dios, queremos invitarte a celebrar nuestro
+          matrimonio civil y compartir un día especial de celebración al aire
+          libre y en el campo.
         </CardSection>
 
         {/* CONTADOR */}
@@ -570,19 +594,13 @@ Email: ${b.email}`;
         <CardSection id="vestimenta" title="Vestimenta sugerida">
           {invite.dressCode}
 
-          <button
-            onClick={() => setShowDress(true)}
-            className="mt-5 w-full linen-btn"
-          >
+          <button onClick={() => setShowDress(true)} className="mt-5 w-full linen-btn">
             Ver sugerencias
           </button>
         </CardSection>
 
-
         {/* REGALOS */}
         <CardSection id="regalos">
-
-
           <button onClick={() => setShowGift(true)} className="w-full linen-btn mt-0">
             Hacer un regalo
           </button>
@@ -600,142 +618,139 @@ Email: ${b.email}`;
       </div>
 
       {/* MODAL REGALOS (responsive) */}
-    {showGift ? (
-      <div
-        className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-3"
-        onClick={() => setShowGift(false)}
-      >
+      {showGift ? (
         <div
-          className="w-full max-w-md max-h-[85vh] overflow-hidden rounded-2xl shadow-xl"
-          onClick={(e) => e.stopPropagation()}
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-3"
+          onClick={() => setShowGift(false)}
         >
-          {/* Contenedor tipo lino */}
-          <div className="linen-card !p-0 h-full">
-            {/* Header fijo */}
-            <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-black/10">
-              <h3 className="linen-title text-lg font-semibold">Hacer un regalo</h3>
+          <div
+            className="w-full max-w-md max-h-[85vh] overflow-hidden rounded-2xl shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Contenedor tipo lino */}
+            <div className="linen-card !p-0 h-full">
+              {/* Header fijo */}
+              <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-black/10">
+                <h3 className="linen-title text-lg font-semibold">Hacer un regalo</h3>
 
-              <button
-                onClick={() => setShowGift(false)}
-                className="rounded-lg px-2 py-1 text-sm text-zinc-600 hover:bg-black/5"
-                aria-label="Cerrar"
-                title="Cerrar"
-              >
-                Cerrar
-              </button>
-            </div>
-
-            {/* Contenido scrolleable */}
-            <div className="px-5 py-4 overflow-y-auto max-h-[calc(85vh-64px)]">
-              {/* ✅ Texto "Nuestro sueño" que antes estaba en la card */}
-              <div className="rounded-2xl bg-white/35 border border-black/10 p-4 text-center">
-                <div className="linen-body text-[14px] leading-7">
-                  {invite.gifts.text}
-                </div>
+                <button
+                  onClick={() => setShowGift(false)}
+                  className="rounded-lg px-2 py-1 text-sm text-zinc-600 hover:bg-black/5"
+                  aria-label="Cerrar"
+                  title="Cerrar"
+                >
+                  Cerrar
+                </button>
               </div>
 
-              {/* Opciones */}
-              <div className="mt-4 space-y-3">
-                {invite.gifts.options.map((g) => (
-                  <div
-                    key={g.title}
-                    className="rounded-2xl bg-white/30 border border-black/10 p-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      {/* OJO: aquí g.icon puede ser emoji o icono, según tu data */}
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/40 border border-black/10">
-                        <span className="text-lg">{g.icon}</span>
-                      </div>
+              {/* Contenido scrolleable */}
+              <div className="px-5 py-4 overflow-y-auto max-h-[calc(85vh-64px)]">
+                <div className="rounded-2xl bg-white/35 border border-black/10 p-4 text-center">
+                  <div className="linen-body text-[14px] leading-7">
+                    {invite.gifts.text}
+                  </div>
+                </div>
 
-                      <div className="flex-1">
-                        <div className="linen-title text-[15px] font-semibold">
-                          {g.title}
+                {/* Opciones */}
+                <div className="mt-4 space-y-3">
+                  {invite.gifts.options.map((g) => (
+                    <div
+                      key={g.title}
+                      className="rounded-2xl bg-white/30 border border-black/10 p-4"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/40 border border-black/10">
+                          <span className="text-lg">{g.icon}</span>
                         </div>
-                        <div className="linen-body text-sm opacity-90">
-                          {g.amount
-                            ? `$${g.amount.toLocaleString("es-CL")}`
-                            : "El monto que tú desees"}
+
+                        <div className="flex-1">
+                          <div className="linen-title text-[15px] font-semibold">
+                            {g.title}
+                          </div>
+                          <div className="linen-body text-sm opacity-90">
+                            {g.amount
+                              ? `$${g.amount.toLocaleString("es-CL")}`
+                              : "El monto que tú desees"}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Datos bancarios */}
-              <div className="mt-4 rounded-2xl bg-white/35 border border-black/10 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="linen-title text-[15px] font-semibold">
-                    Datos bancarios
-                  </div>
-
-                  <button
-                    onClick={copyBank}
-                    className="rounded-xl bg-zinc-900 px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
-                  >
-                    Copiar
-                  </button>
+                  ))}
                 </div>
 
-                <pre className="mt-3 whitespace-pre-wrap text-[13px] leading-6 text-zinc-800">
-    {bankText}
-                </pre>
+                {/* Datos bancarios */}
+                <div className="mt-4 rounded-2xl bg-white/35 border border-black/10 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="linen-title text-[15px] font-semibold">
+                      Datos bancarios
+                    </div>
 
-                <p className="mt-3 text-xs text-zinc-700">
-                  {invite.gifts.materialGiftNote}
+                    <button
+                      onClick={copyBank}
+                      className="rounded-xl bg-zinc-900 px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
+                    >
+                      Copiar
+                    </button>
+                  </div>
+
+                  <pre className="mt-3 whitespace-pre-wrap text-[13px] leading-6 text-zinc-800">
+{bankText}
+                  </pre>
+
+                  <p className="mt-3 text-xs text-zinc-700">
+                    {invite.gifts.materialGiftNote}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {/* MODAL VESTIMENTA */}
+      {showDress ? (
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-3"
+          onClick={() => setShowDress(false)}
+        >
+          <div
+            className="w-full max-w-md max-h-[85vh] overflow-hidden rounded-2xl shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="linen-card !p-0 h-full">
+              <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-black/10">
+                <h3 className="linen-title text-lg font-semibold">Ideas de vestimenta</h3>
+
+                <button
+                  onClick={() => setShowDress(false)}
+                  className="rounded-lg px-2 py-1 text-sm text-zinc-600 hover:bg-black/5"
+                  aria-label="Cerrar"
+                  title="Cerrar"
+                >
+                  Cerrar
+                </button>
+              </div>
+
+              <div className="px-5 py-4 overflow-y-auto max-h-[calc(85vh-64px)]">
+                <div className="space-y-4">
+                  {dressTiktoks.map((t) => (
+                    <div
+                      key={t.videoId}
+                      className="rounded-2xl bg-white/35 border border-black/10 p-3"
+                    >
+                      <TikTokEmbed videoId={t.videoId} cite={t.cite} />
+                    </div>
+                  ))}
+                </div>
+
+                <p className="mt-4 text-xs text-zinc-700 text-center">
+                  Si no cargan al instante, espera un segundo (TikTok tarda en cargar sus videos!).
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    ) : null}
-{showDress ? (
-  <div
-    className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-3"
-    onClick={() => setShowDress(false)}
-  >
-    <div
-      className="w-full max-w-md max-h-[85vh] overflow-hidden rounded-2xl shadow-xl"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <div className="linen-card !p-0 h-full">
-        {/* Header fijo */}
-        <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-black/10">
-          <h3 className="linen-title text-lg font-semibold">Ideas de vestimenta</h3>
-
-          <button
-            onClick={() => setShowDress(false)}
-            className="rounded-lg px-2 py-1 text-sm text-zinc-600 hover:bg-black/5"
-            aria-label="Cerrar"
-            title="Cerrar"
-          >
-            Cerrar
-          </button>
-        </div>
-
-        {/* Contenido scrolleable */}
-        <div className="px-5 py-4 overflow-y-auto max-h-[calc(85vh-64px)]">
-          <div className="space-y-4">
-            {dressTiktoks.map((t) => (
-              <div
-                key={t.videoId}
-                className="rounded-2xl bg-white/35 border border-black/10 p-3"
-              >
-                <TikTokEmbed videoId={t.videoId} cite={t.cite} />
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-4 text-xs text-zinc-700 text-center">
-            Si no cargan al instante, espera un segundo (TikTok tarda en cargar sus videos!).
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-) : null}
-
+      ) : null}
 
       <IntroScreen open={!entered} onEnter={enterInvitation} />
 

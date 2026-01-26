@@ -521,7 +521,7 @@ Email: ${b.email}`;
         {/* PRESENTACIÓN */}
         <CardSection id="presentacion" title="Presentación">
           Con la bendición de Dios, queremos invitarte a celebrar nuestro
-          matrimonio civil y compartir un día especial de celebración al aire
+          matrimonio y compartir un día especial de celebración al aire
           libre y en el campo.
         </CardSection>
 

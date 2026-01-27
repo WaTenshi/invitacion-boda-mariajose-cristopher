@@ -8,7 +8,7 @@ export const invite = {
   dateLong: "28 de febrero de 2026",
   eventDateISO: "2026-02-28T12:00:00-03:00",
   event: {
-    date: "Viernes 28 de febrero de 2026",
+    date: "Sabado 28 de febrero de 2026",
     time: "12:00 hrs",
     place: "Campo familiar",
     mapsUrl: "https://maps.app.goo.gl/K4fihCHNPv52Ez6r5",

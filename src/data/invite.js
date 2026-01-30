@@ -60,7 +60,8 @@ export const invite = {
     "👔 Hombres: prendas de lino (camisa, pantalón o bermuda), mocasines o calzado cómodo.\n" +
     "👗 Mujeres: vestidos relajados, frescos y adecuados para un entorno natural.\n\n" +
     "La vestimenta es sugerida y opcional; lo más importante es que te sientas cómodo/a.\n\n" +
-    "Si deseas disfrutar de la piscina, no olvides traer traje de baño.",
+    "Si deseas disfrutar de la piscina, no olvides traer traje de baño." +
+    "Con cariño, les pedimos evitar los tonos blanco y lila, ya que estarán reservados para la novia  👰",
 
   closing:
     "Gracias por acompañarnos y ser parte de este momento tan importante en nuestras vidas.\n\n¡Te esperamos con mucho cariño!",

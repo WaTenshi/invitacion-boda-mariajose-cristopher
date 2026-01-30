@@ -12,7 +12,6 @@ import { MdDateRange, MdAccessTime, MdPlace } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import { FiCamera } from "react-icons/fi";
 
-// ✅ Helper para rutas correctas en GitHub Pages + Vite
 const BASE = import.meta.env.BASE_URL;
 const img = (p) => `${BASE}${p.replace(/^\/+/, "")}`;
 

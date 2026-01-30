@@ -598,9 +598,10 @@ Email: ${b.email}`;
           </button>
         </CardSection>
 
-        <CardSection id="regalos">
+        <CardSection id="regalos" title="Hacer un regalo">
+          {`Aca va un texto de ejemplo`}
           <button onClick={() => setShowGift(true)} className="w-full linen-btn mt-0">
-            Hacer un regalo
+            Haz click aqui!
           </button>
         </CardSection>
 
